@@ -9,6 +9,13 @@
 // how do I create the elements for the calendar.  how did taskmaster pro do it?
 //moment() can show the current day. 
 
+//creating current date in jumbo-tron
+$("#currentDay").text(moment().format("dddd, MMMM Do"));
+
+
+
+
+
 //I may need code to check out how to make sure time is dealt with (again moment)
 
 
