@@ -20,8 +20,8 @@ function scrooge() {
 
   // i need to get the hour number and determine if it is past, present or future
   //what is the current hour I am testing against?
-  currHour = 10 //test variable
-  // var currHour = moment().hour() //return the current hour 0-15
+  // currHour = 10 //test variable
+  var currHour = moment().hour() //return the current hour 0-15
   var startOfDay = moment().hour(9);
   var endOfDay = moment().hour(17);
 
