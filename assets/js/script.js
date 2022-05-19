@@ -11,19 +11,10 @@ $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 // WHEN I scroll down THEN I am presented with time blocks for standard business hours
 // show timeblocks for standard business hours
+var hour = 9
+
+var timePeriod = ""
 var calHour = {};
-
-
-
-var createTimeBlock = function(taskText, taskDate, taskList) {
-    // create elements that make up a task item
-    var taskLi = $("<li>").addClass("list-group-item");
-    var taskSpan = $("<span>")
-      .addClass("badge badge-primary badge-pill")
-      .text(taskDate);
-    var taskP = $("<p>")
-      .addClass("m-1")
-      .text(taskText);
 
 
 
