@@ -15,12 +15,66 @@ $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 
 // WHEN I view the time blocks for that day THEN each time block is color-coded to indicate whether it is in the past, present, or future
-var setTime = moment().hour(12)
-if (moment().format("hh:mm:ss") < setTime) {
-  console.log("it's PM")
-} else {
-  console.log("it's AM");
-}
+
+function presentHour() { }
+
+// i need to get the hour number and determine if it is past, present or future
+//what is the current hour I am testing against?
+var currHour = moment().hour(); //return the current hour 0-15
+
+//what am I testing?  The time-blocks.  
+//so I want to test all time blocks against currHour and
+// determine if they are past, present or future
+$(".hour").each(function (index) {
+  // hourArray.push($(this).text())
+  hourNum = $(this).text().replace(/\D+$/g, "");
+  if (hourNum > 12) {
+    hourNum = hourNum + 12
+  };
+  console.log(hourNum);
+});
+
+
+
+// if the time block is the same number as 
+// as the time block in the calender that equals "present"
+// else is the time block < or > present.
+//if < then that equals past.
+// and if it's not present and not past then it's future.
+
+
+
+
+
+
+// $(this)
+//       .children()
+//       .each(function() {
+//         // save values in temp array
+//         tempArr.push({
+//           text: $(this)
+//             .find("p")
+//             .text()
+//             .trim(),
+//           date: $(this)
+//             .find("span")
+//             .text()
+//             .trim()
+//         });
+//       });
+
+// $(".time-block").text().each(function() {
+//   console.log($("span").text());
+// });
+
+
+
+
+
+
+
+
+
 
 
 
