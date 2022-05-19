@@ -9,27 +9,27 @@
 //shows current day at the top of the calendar
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
+
 // WHEN I scroll down THEN I am presented with time blocks for standard business hours
 // show timeblocks for standard business hours
-var hour = 9
-
-var timePeriod = ""
-var calHour = {};
-
-
-
-
-
 
 
 // WHEN I view the time blocks for that day THEN each time block is color-coded to indicate whether it is in the past, present, or future
+var setTime = moment().hour(12)
+if (moment().format("hh:mm:ss") < setTime) {
+  console.log("it's PM")
+} else {
+  console.log("it's AM");
+}
 
 
 
 
 
 // WHEN I click into a time block THEN I can enter an event
-
+$(".time-block").on("click", "input", function () {
+  var text = $(this).text()
+})
 
 
 
