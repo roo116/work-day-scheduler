@@ -16,24 +16,59 @@ $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 // WHEN I view the time blocks for that day THEN each time block is color-coded to indicate whether it is in the past, present, or future
 
-function presentHour() { }
+function scrooge() {
 
-// i need to get the hour number and determine if it is past, present or future
-//what is the current hour I am testing against?
-var currHour = moment().hour(); //return the current hour 0-15
+  // i need to get the hour number and determine if it is past, present or future
+  //what is the current hour I am testing against?
+  currHour = 10 //test variable
+  // var currHour = moment().hour() //return the current hour 0-15
+  var startOfDay = moment().hour(9);
+  var endOfDay = moment().hour(17);
 
-//what am I testing?  The time-blocks.  
-//so I want to test all time blocks against currHour and
-// determine if they are past, present or future
-$(".hour").each(function (index) {
-  // hourArray.push($(this).text())
-  hourNum = $(this).text().replace(/\D+$/g, "");
-  if (hourNum > 12) {
-    hourNum = hourNum + 12
-  };
-  console.log(hourNum);
-});
+  // if not during the work day, go home!!! live life!!!
+  // if (currHour < startOfDay || currHour > endOfDay) {
+  //   console.log("after hours");
+  //   return;
+  // }
 
+  //what am I testing?  The time-blocks.  
+  //so I want to test all time blocks against currHour and
+  // determine if they are past, present or future
+
+  $(".hour").each(function (index) {
+    // hourArray.push($(this).text())
+    hourNum = parseInt($(this).text().replace(/\D+$/g, ""));
+    // console.log(hourNum);
+
+    // make the hours into military time
+    if (hourNum > 0 && hourNum < 6) {
+      hourNum = hourNum + 12
+      // console.log(hourNum);
+    };
+
+    if (currHour > hourNum) {
+      $(this).next().addClass("past");
+    } else if (currHour < hourNum) {
+      $(this).next().addClass("future");
+    } else {
+      $(this).next().addClass("present")
+    };
+
+
+
+    console.log("the current hour is " + currHour + ". The hour in the calendar is " + hourNum);
+
+    //   else if (currHour > hourNum{
+
+    //   }
+    // }
+    // console.log(hourNum);
+
+  });
+};
+
+
+scrooge();
 
 
 // if the time block is the same number as 
