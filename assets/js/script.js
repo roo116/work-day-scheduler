@@ -10,40 +10,24 @@
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 
-// WHEN I scroll down THEN I am presented with time blocks for standard business hours
-// show timeblocks for standard business hours
-
-
 // WHEN I view the time blocks for that day THEN each time block is color-coded to indicate whether it is in the past, present, or future
 
-function scrooge() {
+function marleysGhost() {
 
-  // i need to get the hour number and determine if it is past, present or future
-  //what is the current hour I am testing against?
-  // currHour = 10 //test variable
-  var currHour = moment().hour() //return the current hour 0-15
+  currHour = moment().hour()
+
   var startOfDay = moment().hour(9);
   var endOfDay = moment().hour(17);
 
-  // if not during the work day, go home!!! live life!!!
-  // if (currHour < startOfDay || currHour > endOfDay) {
-  //   console.log("after hours");
-  //   return;
-  // }
-
-  //what am I testing?  The time-blocks.  
-  //so I want to test all time blocks against currHour and
   // determine if they are past, present or future
 
   $(".hour").each(function (index) {
-    // hourArray.push($(this).text())
     hourNum = parseInt($(this).text().replace(/\D+$/g, ""));
-    // console.log(hourNum);
+
 
     // make the hours into military time
     if (hourNum > 0 && hourNum < 6) {
       hourNum = hourNum + 12
-      // console.log(hourNum);
     };
 
     if (currHour > hourNum) {
@@ -56,77 +40,46 @@ function scrooge() {
 
 
 
-    console.log("the current hour is " + currHour + ". The hour in the calendar is " + hourNum);
+    // console.log("the current hour is " + currHour + ". The hour in the calendar is " + hourNum);
 
-    //   else if (currHour > hourNum{
 
-    //   }
-    // }
-    // console.log(hourNum);
 
   });
 };
 
+marleysGhost();
 
-scrooge();
-
-
-// if the time block is the same number as 
-// as the time block in the calender that equals "present"
-// else is the time block < or > present.
-//if < then that equals past.
-// and if it's not present and not past then it's future.
-
-
-
-
-
-
-// $(this)
-//       .children()
-//       .each(function() {
-//         // save values in temp array
-//         tempArr.push({
-//           text: $(this)
-//             .find("p")
-//             .text()
-//             .trim(),
-//           date: $(this)
-//             .find("span")
-//             .text()
-//             .trim()
-//         });
-//       });
-
-// $(".time-block").text().each(function() {
-//   console.log($("span").text());
-// });
-
-
-
-
-
-
-
-
-
-
+setInterval(function () {
+  marleysGhost();
+}, (1000 * 60) * 60);
 
 
 
 
 // WHEN I click into a time block THEN I can enter an event
-$(".time-block").on("click", "input", function () {
-  var text = $(this).text()
-})
+// $(".time-block").on("click", "input", function () {
+//   var text = $(this).text()
+// })
 
-
+//1. Identify which time-block has been selected.  
+//2. make sure input is accepted
+//  - write what is taken in as a variable. 
+//  - trim white-spaces
+// 
+//3. 
+function addEvent() {
+  var eventTxt = $("")
+}
 
 
 // WHEN I click the save button for that time block THEN the text for that event is saved in local storage
 
-
+//1. capture data
+//make button event
+// stringify 
+// create keys and store in local storage
 
 
 
 // WHEN I refresh the page THEN the saved events persist
+//retrieve from local storage.
