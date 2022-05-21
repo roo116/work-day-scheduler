@@ -68,8 +68,12 @@ setInterval(function () {
 // 
 //3. 
 function addEvent() {
-  var eventTxt = $("")
+  preventDefaul()
+  var eventTxt = $(".")
+  
 }
+
+$(".saveBtn")
 
 
 // WHEN I click the save button for that time block THEN the text for that event is saved in local storage
