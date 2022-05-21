@@ -5,6 +5,9 @@
 // Add custom color styles to an existing CSS framework
 // Work with custom fonts and icons via a content delivery network (CDN)
 
+// var appt = {};
+// var key = ""
+// var txt = ""
 
 //shows current day at the top of the calendar
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
@@ -59,7 +62,8 @@ setInterval(function () {
 $(".saveBtn").click(function () {
 
   //check if the appt field is blank.  if so reset textarea and bail.  //worked
-  var txt = $("textarea").val().trim();
+  var txt = $(this).prev().val().trim();
+
   if (txt === "") {
     $("textarea").val('');
     return;
@@ -68,14 +72,17 @@ $(".saveBtn").click(function () {
   // create key for localStorate //worked
   var hourEl = $(this).prev().prev().text();
   var keyHr = parseInt(hourEl.replace(/\D+$/g, ""))
-  var key = moment().format("YYYYMMDD") + keyHr;
+  key = moment().format("YYYYMMDD") + keyHr;
 
   // entry to localStorage //worked
   localStorage.setItem(key, JSON.stringify(txt));
 
 })
 
-// get localStorage/persistence
+// // get localStorage/persistence
+// function loadAppts () {
+// };
+
 
 
 
