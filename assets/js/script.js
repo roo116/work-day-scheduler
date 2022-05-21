@@ -6,8 +6,8 @@
 // Work with custom fonts and icons via a content delivery network (CDN)
 
 // var appt = {};
-// var key = ""
-// var txt = ""
+var appt = [];
+var txt = ""
 
 //shows current day at the top of the calendar
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
@@ -71,17 +71,37 @@ $(".saveBtn").click(function () {
 
   // create key for localStorate //worked
   var hourEl = $(this).prev().prev().text();
-  var keyHr = parseInt(hourEl.replace(/\D+$/g, ""))
-  key = moment().format("YYYYMMDD") + keyHr;
+  var key = parseInt(hourEl.replace(/\D+$/g, ""))
 
-  // entry to localStorage //worked
+
+  // // entry to localStorage //worked
+  // for(getAppt=0, getAppt<)
   localStorage.setItem(key, JSON.stringify(txt));
 
 })
 
 // // get localStorage/persistence
-// function loadAppts () {
-// };
+// I need to get the appropriate keys out of localStorage. 
+// key doesn't work because it just has the last key.  so is there away to 
+// a) get all the pertinent keys back from localStorage into an array,
+// b) cycle through the array and capture the associate value
+// c) make sure it's in the right location
+
+var appts = Object.keys(localStorage);
+console.log(appts.length);
+for (var i = 0; i < appts.length; i++) {
+  txtContent = localStorage.getItem(appts[i]);
+  txtContent = JSON.parse(txtContent);
+  console.log(txtContent);
+  // got the key so compare that to hourEl.  If key === hourEl
+  //  update the elment after to be .hour elment with the value of the corresponding key. 
+  // test to see if you have to do this on load. 
+
+
+
+
+
+};
 
 
 
