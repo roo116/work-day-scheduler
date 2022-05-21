@@ -75,6 +75,10 @@ $(".saveBtn").click(function () {
 
 })
 
+// get localStorage/persistence
+
+
+
 
 // WHEN I click the save button for that time block THEN the text for that event is saved in local storage
 
