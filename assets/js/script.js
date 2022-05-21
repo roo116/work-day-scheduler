@@ -10,7 +10,8 @@
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 
-// WHEN I view the time blocks for that day THEN each time block is color-coded to indicate whether it is in the past, present, or future
+
+// color-code each time block to indicate whether it is in the past, present, or future
 
 function marleysGhost() {
 
@@ -54,26 +55,25 @@ setInterval(function () {
 }, (1000 * 60) * 60);
 
 
+//creating/testing button click code //worked
+$(".saveBtn").click(function () {
 
+  //check if the appt field is blank.  if so reset textarea and bail.  //worked
+  var txt = $("textarea").val().trim();
+  if (txt === "") {
+    $("textarea").val('');
+    return;
+  }
 
-// WHEN I click into a time block THEN I can enter an event
-// $(".time-block").on("click", "input", function () {
-//   var text = $(this).text()
-// })
+  // create key for localStorate //worked
+  var hourEl = $(this).prev().prev().text();
+  var keyHr = parseInt(hourEl.replace(/\D+$/g, ""))
+  var key = moment().format("YYYYMMDD") + keyHr;
 
-//1. Identify which time-block has been selected.  
-//2. make sure input is accepted
-//  - write what is taken in as a variable. 
-//  - trim white-spaces
-// 
-//3. 
-function addEvent() {
-  preventDefaul()
-  var eventTxt = $(".")
-  
-}
+  // entry to localStorage //worked
+  localStorage.setItem(key, JSON.stringify(txt));
 
-$(".saveBtn")
+})
 
 
 // WHEN I click the save button for that time block THEN the text for that event is saved in local storage
