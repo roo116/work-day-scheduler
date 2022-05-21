@@ -6,12 +6,31 @@
 // Work with custom fonts and icons via a content delivery network (CDN)
 
 // var appt = {};
-var appt = [];
+var tasks = {}
 var txt = ""
+hourNum = ""
+
+function init() {
+  tasks = JSON.parse(localStorage.getItem("tasks"));
+  console.log(tasks);
+  if (!tasks) {
+    tasks = {
+      hour: [],
+      text: []
+    };
+  }
+  // $.each(tasks, function(list, arr) {
+  //   // then loop over sub-array
+  //   arr.forEach(function(task) {
+  //     createTask(task.text, task.date, list);
+  //   });
+  // });
+}
+init();
+
 
 //shows current day at the top of the calendar
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
-
 
 
 // color-code each time block to indicate whether it is in the past, present, or future
@@ -24,10 +43,9 @@ function marleysGhost() {
   var endOfDay = moment().hour(17);
 
   // determine if they are past, present or future
-
   $(".hour").each(function (index) {
     hourNum = parseInt($(this).text().replace(/\D+$/g, ""));
-
+    console.log(hourNum)
 
     // make the hours into military time
     if (hourNum > 0 && hourNum < 6) {
@@ -62,22 +80,16 @@ setInterval(function () {
 $(".saveBtn").click(function () {
 
   //check if the appt field is blank.  if so reset textarea and bail.  //worked
-  var txt = $(this).prev().val().trim();
+  txt = $(this).prev().val().trim();
 
   if (txt === "") {
     $("textarea").val('');
     return;
   }
 
-  // create key for localStorate //worked
-  var hourEl = $(this).prev().prev().text();
-  var key = parseInt(hourEl.replace(/\D+$/g, ""))
-
-
-  // // entry to localStorage //worked
-  // for(getAppt=0, getAppt<)
-  localStorage.setItem(key, JSON.stringify(txt));
-
+  tasks.text.push(txt);
+  tasks.hour.push(parseInt($(this).prev().prev().text().replace(/\D+$/g, "")));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 })
 
 // // get localStorage/persistence
@@ -87,21 +99,29 @@ $(".saveBtn").click(function () {
 // b) cycle through the array and capture the associate value
 // c) make sure it's in the right location
 
-var appts = Object.keys(localStorage);
-console.log(appts.length);
-for (var i = 0; i < appts.length; i++) {
-  txtContent = localStorage.getItem(appts[i]);
-  txtContent = JSON.parse(txtContent);
-  console.log(txtContent);
+// function getTasks() {
+
+// }
+
+// $(".hour").each(function (index) {
+//   hourNum = parseInt($(this).text().replace(/\D+$/g, ""));
+//   if(hourNum === txtContent) {
+//     ((this).next().innerHTML)
+//   }
+// });
+
+
+
+
+
+
+
+
+
   // got the key so compare that to hourEl.  If key === hourEl
-  //  update the elment after to be .hour elment with the value of the corresponding key. 
-  // test to see if you have to do this on load. 
+  //  update the elment after to be .hour elment with the value of the corresponding key.
+  // test to see if you have to do this on load.
 
-
-
-
-
-};
 
 
 
