@@ -4,6 +4,7 @@
 // Bootstrap grid layout in HTML.  Bootstrap components
 // Add custom color styles to an existing CSS framework
 // Work with custom fonts and icons via a content delivery network (CDN)
+// localStorage.clear()
 
 // var appt = {};
 var tasks = {}
@@ -18,73 +19,133 @@ var newArray = []
 
 
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
+var currDate = moment().format("YYYYMMDD");
 
 
 
 function init() {
 
+
   tasks = JSON.parse(localStorage.getItem("tasks"));
+
 
   if (!tasks) {
     tasks = {
+      key: [],
+      date: [],
       hour: [],
       text: []
     };
+    // return;
   }
-  else {
-    var checkHr = document.querySelectorAll(".hour");
-    for (i = 0; i < checkHr.length; i++) {
-      hrArr.push(checkHr[i].innerHTML)
-    };
-    console.log(hrArr);
 
-    for (i = 0; i < tasks.hour.length; i++) {
-      var tasksHr = tasks.hour[i];
-      hr = parseInt(tasksHr.replace(/\D+$/g, ""));
-      console.log(hr);
+  console.log(tasks.key.length);
+  for (i = 0; i < tasks.key.length; i++) {
+    if (tasks.date[i] === currDate) {
+      hr = tasks.hour[i]
+      console.log(hr)
       if (hr > 0 && hr < 6) {
-        hr = hr + 12
-      };
-      hrIdName = "#hour" + hr;
-      document.querySelector(hrIdName).textContent = tasks.text
-    };
+        hr = hr + 12;
+      }
+      var tgtId = "#hour" + hr;
+      console.log(tgtId);
+      document.querySelector(tgtId).textContent = tasks.text[i];
+    }
+
+  };
 
 
-  }
+  // // if (tasks.date[i] === currDate) {
+  // hr = tasks.hour[i]
+  // if (hr > 0 && hr < 6) {
+  //   hr = hr + 12;
+  //   hrIdName = "#hour" + hr;
+  //   console.log(hrIdName);
+  // var target = document.querySelector(hrIdName);
+  // console.log(target);
+}
+
+
+// }
+
+//   var checkHr = document.querySelectorAll(".hour");
+//   for (i = 0; i < checkHr.length; i++) {
+//     hrArr.push(checkHr[i].innerHTML)
+//   };
+//   console.log(hrArr);
+
+//   for (i = 0; i < tasks.hour.length; i++) {
+//     var tasksHr = tasks.hour[i];
+//     hr = parseInt(tasksHr.replace(/\D+$/g, ""));
+//     console.log(hr);
+//     if (hr > 0 && hr < 6) {
+//       hr = hr + 12
+//     };
+//     hrIdName = "#hour" + hr;
+//     document.querySelector(hrIdName).textContent = tasks.text
+//   }
+// };
 
 
 
 
-  // for (var i = 0; i < hrArr.length; i++) {
-  //   // we want to know if a[i] is found in b
-  //   var match = false; // we haven't found it yet
-  //   for (var tr = 0; tr < tasks.length; tr++) {
-  //     if (hrArr[i] == tasks.hour[tr]) {
-  //       // we have found a[i] in b, so we can stop searching
-  //       match = true;
-  //       break;
-  //     }
-  //     // if we never find a[i] in b, the for loop will simply end,
-  //     // and match will remain false
-  //   }
-  //   // add a[i] to newArray only if we didn't find a match.
-  //   if (!match) {
-  //     newArray.push(hrArr[i]);
-  //   }
-  // }
 
-  // for (i = 0; i < hrArr.length; i++) {
-  //   var eventHr = hrArr[i]
-  //   var tasksHr = tasks.hour[i]
-  //   // if (hrArr[i].indexOf(tasksHr) !== -1) {
-  //     console.log(">>eventHr = ", eventHr);
-  //     console.log(">>tasksHr = ", tasksHr);
-  //     if (eventHr === tasksHr) {
-  //       console.log("this is ", true) } else {
-  //         console.log("this is ", false);
-  //       }
-  //     }
-};
+
+
+// else {
+// var checkHr = document.querySelectorAll(".hour");
+// for (i = 0; i < checkHr.length; i++) {
+//   hrArr.push(checkHr[i].innerHTML)
+// };
+// console.log(hrArr);
+
+// for (i = 0; i < tasks.hour.length; i++) {
+//   var tasksHr = tasks.hour[i];
+//   hr = parseInt(tasksHr.replace(/\D+$/g, ""));
+//   console.log(hr);
+//   if (hr > 0 && hr < 6) {
+//     hr = hr + 12
+//   };
+//   hrIdName = "#hour" + hr;
+//   document.querySelector(hrIdName).textContent = tasks.text
+//   };
+
+
+// }
+
+
+
+
+// for (var i = 0; i < hrArr.length; i++) {
+//   // we want to know if a[i] is found in b
+//   var match = false; // we haven't found it yet
+//   for (var tr = 0; tr < tasks.length; tr++) {
+//     if (hrArr[i] == tasks.hour[tr]) {
+//       // we have found a[i] in b, so we can stop searching
+//       match = true;
+//       break;
+//     }
+//     // if we never find a[i] in b, the for loop will simply end,
+//     // and match will remain false
+//   }
+//   // add a[i] to newArray only if we didn't find a match.
+//   if (!match) {
+//     newArray.push(hrArr[i]);
+//   }
+// }
+
+// for (i = 0; i < hrArr.length; i++) {
+//   var eventHr = hrArr[i]
+//   var tasksHr = tasks.hour[i]
+//   // if (hrArr[i].indexOf(tasksHr) !== -1) {
+//     console.log(">>eventHr = ", eventHr);
+//     console.log(">>tasksHr = ", tasksHr);
+//     if (eventHr === tasksHr) {
+//       console.log("this is ", true) } else {
+//         console.log("this is ", false);
+//       }
+//     }
+
 // else {
 //   console.log(false);
 
@@ -213,18 +274,28 @@ setInterval(function () {
 //creating/testing button click code //worked
 $(".saveBtn").click(function () {
 
+
+  // $(").click(function () {
+  //   var idClicked = button.target.id;
+  //   console.log(idClicked);
+  // });
+
   //check if the appt field is blank.  if so reset textarea and bail.  //worked
   txt = $(this).prev().val().trim();
-  hr = $(this).prev().prev().text();
+  console.log(txt)
 
   if (txt === "") {
     $("textarea").val('');
     return;
   }
+  //create key
+  var dateKey = moment().format("YYYYMMDD");
+  var hrKey = (parseInt($(this).prev().prev().text().replace(/\D+$/g, "")));
 
+  tasks.key.push(dateKey + hrKey);
+  tasks.date.push(dateKey);
+  tasks.hour.push(hrKey);
   tasks.text.push(txt);
-  // // tasks.hour.push(parseInt($(this).prev().prev().text().replace(/\D+$/g, "")));
-  tasks.hour.push(hr);
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
