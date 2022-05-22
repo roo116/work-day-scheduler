@@ -31,16 +31,13 @@ function init() {
     return;
   }
 
-  console.log(tasks.key.length);
   for (i = 0; i < tasks.key.length; i++) {
     if (tasks.date[i] === currDate) {
-      hr = tasks.hour[i]
-      console.log(hr)
+      hr = tasks.hour[i];
       if (hr > 0 && hr < 6) {
         hr = hr + 12;
       }
       var tgtId = "#hour" + hr;
-      console.log(tgtId);
       document.querySelector(tgtId).textContent = tasks.text[i];
     }
 
@@ -61,7 +58,6 @@ function marleysGhost() {
   // determine if they are past, present or future
   $(".hour").each(function (index) {
     hourNum = parseInt($(this).text().replace(/\D+$/g, ""));
-    console.log(hourNum)
 
     // make the hours into military time
     if (hourNum > 0 && hourNum < 6) {
@@ -90,7 +86,6 @@ setInterval(function () {
 $(".saveBtn").click(function () {
 
   txt = $(this).prev().val().trim();
-  console.log(txt)
 
   if (txt === "") {
     $("textarea").val('');
