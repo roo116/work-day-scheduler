@@ -23,32 +23,34 @@ $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 function init() {
 
-  checkHr = document.querySelectorAll(".hour");
-  for (i = 0; i < checkHr.length; i++) {
-    hrArr.push(checkHr[i].innerHTML)
-  };
-  console.log(hrArr);
-
-
   tasks = JSON.parse(localStorage.getItem("tasks"));
-  console.log(tasks.hour);
 
-  for (i = 0; i < tasks.hour.length; i++){
-  var tasksHr = tasks.hour[i];
-  hr = parseInt(tasksHr.replace(/\D+$/g, ""));
-  console.log(hr);
- 
- 
-  };
+  if (!tasks) {
+    tasks = {
+      hour: [],
+      text: []
+    };
+  }
+  else {
+    var checkHr = document.querySelectorAll(".hour");
+    for (i = 0; i < checkHr.length; i++) {
+      hrArr.push(checkHr[i].innerHTML)
+    };
+    console.log(hrArr);
+
+    for (i = 0; i < tasks.hour.length; i++) {
+      var tasksHr = tasks.hour[i];
+      hr = parseInt(tasksHr.replace(/\D+$/g, ""));
+      console.log(hr);
+      if (hr > 0 && hr < 6) {
+        hr = hr + 12
+      };
+      hrIdName = "#hour" + hr;
+      document.querySelector(hrIdName).textContent = tasks.text
+    };
 
 
-
-  // if (!tasks) {
-  //   tasks = {
-  //     hour: [],
-  //     text: []
-  //   };
-  // };
+  }
 
 
 
