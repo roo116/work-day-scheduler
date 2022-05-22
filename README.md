@@ -4,6 +4,14 @@
 
 AS AN employee with a busy schedule I WANT to add important events to a daily planner SO THAT I can manage my time effectively.
 
+## Instructions/Features
+
+## 1. Displays current date. ![alt text](./assets/images/header.png)
+
+## 2. Displays Time blocks for text entry, and time blocks are color coded based on time of day relative to current time. ![alt text](./assets/images/timeblocks.png)
+
+## 3. And YES you can enter an event. If you refresh the page, the event will remain, ![alt text](./assets/images/evententry.png)
+
 ## acceptance criteria
 
 GIVEN I am using a daily planner to create a schedule
