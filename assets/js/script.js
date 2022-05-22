@@ -6,11 +6,161 @@
 // Work with custom fonts and icons via a content delivery network (CDN)
 
 // var appt = {};
+var tasks = {}
 var appt = [];
+var hr = ""
+var hrArr = [];
+var tasks = {};
 var txt = ""
+var hourNum = ""
+var count = 0;
+var newArray = []
+
+
+$("#currentDay").text(moment().format("dddd, MMMM Do"));
+
+
+
+function init() {
+
+  checkHr = document.querySelectorAll(".hour");
+  for (i = 0; i < checkHr.length; i++) {
+    hrArr.push(checkHr[i].innerHTML)
+  };
+  console.log(hrArr);
+
+
+  tasks = JSON.parse(localStorage.getItem("tasks"));
+  console.log(tasks.hour);
+
+  for (i = 0; i < tasks.hour.length; i++){
+  var tasksHr = tasks.hour[i];
+  hr = parseInt(tasksHr.replace(/\D+$/g, ""));
+  console.log(hr);
+ 
+ 
+  };
+
+
+
+  // if (!tasks) {
+  //   tasks = {
+  //     hour: [],
+  //     text: []
+  //   };
+  // };
+
+
+
+
+  // for (var i = 0; i < hrArr.length; i++) {
+  //   // we want to know if a[i] is found in b
+  //   var match = false; // we haven't found it yet
+  //   for (var tr = 0; tr < tasks.length; tr++) {
+  //     if (hrArr[i] == tasks.hour[tr]) {
+  //       // we have found a[i] in b, so we can stop searching
+  //       match = true;
+  //       break;
+  //     }
+  //     // if we never find a[i] in b, the for loop will simply end,
+  //     // and match will remain false
+  //   }
+  //   // add a[i] to newArray only if we didn't find a match.
+  //   if (!match) {
+  //     newArray.push(hrArr[i]);
+  //   }
+  // }
+
+  // for (i = 0; i < hrArr.length; i++) {
+  //   var eventHr = hrArr[i]
+  //   var tasksHr = tasks.hour[i]
+  //   // if (hrArr[i].indexOf(tasksHr) !== -1) {
+  //     console.log(">>eventHr = ", eventHr);
+  //     console.log(">>tasksHr = ", tasksHr);
+  //     if (eventHr === tasksHr) {
+  //       console.log("this is ", true) } else {
+  //         console.log("this is ", false);
+  //       }
+  //     }
+};
+// else {
+//   console.log(false);
+
+// }
+// }
+
+
+
+
+
+// for (i = 0; i < tasks.length; i++) {
+//   for (th = 0; th < tasks.hour.length; th++) {
+//     // if (tasks.hour[th] === hrArr[i]) {
+//     console.log(tasks.hour[th], " : ", hrArr[i]);
+//     if (tasks.hour[th] == hrArr[i]); {
+//       var restoreEvent = tasks.text[i];
+//       console.log(">>> restoreEvent is ", restoreEvent);
+//     }
+//     // }
+//   }
+// }
+
+// } else {
+//   for (count = 0; i < tasks.hour.length; count++) {
+//     for (i = 0; i < hrArr.length; i++) {
+//       if (tasks.hour[count] === hrArr[i]) {
+//         console.log(true);
+//       };
+//     };
+//   };
+// };
+// this WORKS for getting through arrays so DON"T DELETE!!!
+// $.each(tasks.hour), function (index, value) {
+//   alert(index + ": " + value);
+// });
+
+// for(count=0; i<9; i++) {
+
+
+//   console.log(checkHr);
+
+
+// hr = tasks.hour[count];
+
+
+// var result = 0;
+
+// for (var i = 0; i < hrArr.length; i++) {
+
+//   if (hrArr.indexOf(tasks) !== -1) {
+//     console.log(">>> ", hrArr, " ", tasks);
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+// else {
+//   $(".hour").each(function (index) {
+//     console.log($(".hour").text(index));
+//   });
+// };
+
+
+
+
+init();
 
 //shows current day at the top of the calendar
-$("#currentDay").text(moment().format("dddd, MMMM Do"));
+
 
 
 
@@ -62,23 +212,22 @@ setInterval(function () {
 $(".saveBtn").click(function () {
 
   //check if the appt field is blank.  if so reset textarea and bail.  //worked
-  var txt = $(this).prev().val().trim();
+  txt = $(this).prev().val().trim();
+  hr = $(this).prev().prev().text();
 
   if (txt === "") {
     $("textarea").val('');
     return;
   }
 
-  // create key for localStorate //worked
-  var hourEl = $(this).prev().prev().text();
-  var key = parseInt(hourEl.replace(/\D+$/g, ""))
+  tasks.text.push(txt);
+  // // tasks.hour.push(parseInt($(this).prev().prev().text().replace(/\D+$/g, "")));
+  tasks.hour.push(hr);
 
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 
-  // // entry to localStorage //worked
-  // for(getAppt=0, getAppt<)
-  localStorage.setItem(key, JSON.stringify(txt));
+});
 
-})
 
 // // get localStorage/persistence
 // I need to get the appropriate keys out of localStorage. 
@@ -87,21 +236,21 @@ $(".saveBtn").click(function () {
 // b) cycle through the array and capture the associate value
 // c) make sure it's in the right location
 
-var appts = Object.keys(localStorage);
-console.log(appts.length);
-for (var i = 0; i < appts.length; i++) {
-  txtContent = localStorage.getItem(appts[i]);
-  txtContent = JSON.parse(txtContent);
-  console.log(txtContent);
+// var appts = Object.keys(localStorage);
+// console.log(appts.length);
+// for (var i = 0; i < appts.length; i++) {
+//   txtContent = localStorage.getItem(appts[i]);
+//   txtContent = JSON.parse(txtContent);
+//   console.log(txtContent);
   // got the key so compare that to hourEl.  If key === hourEl
-  //  update the elment after to be .hour elment with the value of the corresponding key. 
-  // test to see if you have to do this on load. 
+  //  update the elment after to be .hour elment with the value of the corresponding key.
+  // test to see if you have to do this on load.
 
 
 
 
 
-};
+
 
 
 
