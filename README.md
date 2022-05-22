@@ -1,5 +1,6 @@
 # work-day-scheduler
-link:
+link: https://roo116.github.io/work-day-scheduler/
+Github repo: https://github.com/roo116/work-day-scheduler
 
 ## user story
 
